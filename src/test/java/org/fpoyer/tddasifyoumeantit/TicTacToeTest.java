@@ -121,12 +121,25 @@ public class TicTacToeTest {
 		assertThat(Owin, is(true));
 	}
 	
+	@Test public void 
+	should_not_win_O_if_row_taken_by_X() {
+		String sequencePlayed = "A1, B1, A2, B2, A3, ";
+		String row = "A";
+		boolean Owin = oWins(sequencePlayed, row);
+		assertThat(Owin, is(false));
+	}
+	
 	private boolean xWins(String sequencePlayed, String searchedChar) {
 		return foundFirst(sequencePlayed, searchedChar) 
+				&& firstNotTakenByOpponent(sequencePlayed, searchedChar)
 				&& foundSecond(sequencePlayed, searchedChar) 
 				&& secondNotTakenByOpponent(sequencePlayed, searchedChar) 
 				&& foundThird(sequencePlayed, searchedChar) 
 				&& thirdNotTakenByOpponent(sequencePlayed, searchedChar);
+	}
+	
+	private boolean oWins(String sequencePlayed, String searchedChar) {
+		return !xWins(sequencePlayed, searchedChar) && xWins(sequencePlayed.substring(4), searchedChar);
 	}
 
 	private boolean thirdNotTakenByOpponent(String sequencePlayed, String searchedChar) {
@@ -136,6 +149,10 @@ public class TicTacToeTest {
 	private boolean secondNotTakenByOpponent(String sequencePlayed, String searchedChar) {
 		int indexOfChar = sequencePlayed.indexOf(searchedChar);
 		return sequencePlayed.substring(indexOfChar + 1).indexOf(searchedChar)%8 != 3;
+	}
+
+	private boolean firstNotTakenByOpponent(String sequencePlayed, String searchedChar) {
+		return sequencePlayed.indexOf(searchedChar)%8 != 4;
 	}
 
 	private boolean foundThird(String sequencePlayed, String searchedChar) {
