@@ -73,6 +73,14 @@ public class TicTacToeTest {
 		assertThat(Xwin, is(false));
 	}
 	
+	@Test public void 
+	should_not_win_X_if_row_taken_by_O() {
+		String sequencePlayed = "A1, A2, A3, ";
+		String row = "A";
+		boolean Xwin = xWinsRow(sequencePlayed, row);
+		assertThat(Xwin, is(false));
+	}
+	
 	private boolean xWinsRow(String sequencePlayed, String row) {
 		int firstIndexOfRow = sequencePlayed.indexOf(row);
 		String followingSequence = sequencePlayed.substring(firstIndexOfRow + 1);
