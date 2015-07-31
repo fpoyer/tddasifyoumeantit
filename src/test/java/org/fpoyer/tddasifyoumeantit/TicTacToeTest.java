@@ -13,7 +13,7 @@ public class TicTacToeTest {
 	should_win_X_if_A_row_taken() {
 		String sequencePlayed = "A1, B1, A2, B2, A3, ";
 		String row = "A";
-		boolean Xwin = xWins(sequencePlayed, row);
+		boolean Xwin = xWinsRowOrCol(sequencePlayed, row);
 		assertThat(Xwin, is(true));
 	}
 
@@ -21,7 +21,7 @@ public class TicTacToeTest {
 	should_win_X_if_B_row_taken() {
 		String sequencePlayed = "B1, A1, B2, A2, B3, ";
 		String row = "B";
-		boolean Xwin = xWins(sequencePlayed, row);
+		boolean Xwin = xWinsRowOrCol(sequencePlayed, row);
 		assertThat(Xwin, is(true));
 	}
 
@@ -29,7 +29,7 @@ public class TicTacToeTest {
 	should_win_X_if_C_row_taken() {
 		String sequencePlayed = "C1, A1, C2, A2, C3, ";
 		String row = "C";
-		boolean Xwin = xWins(sequencePlayed, row);
+		boolean Xwin = xWinsRowOrCol(sequencePlayed, row);
 		assertThat(Xwin, is(true));
 	}
 
@@ -37,7 +37,7 @@ public class TicTacToeTest {
 	should_not_win_X_if_not_all_row_taken() {
 		String sequencePlayed = "A1, ";
 		String row = "A";
-		boolean Xwin = xWins(sequencePlayed, row);
+		boolean Xwin = xWinsRowOrCol(sequencePlayed, row);
 		assertThat(Xwin, is(false));
 	}
 	
@@ -45,7 +45,7 @@ public class TicTacToeTest {
 	should_win_X_if_column_1_taken() {
 		String sequencePlayed = "A1, A2, B1, B2, C1, ";
 		String column = "1";
-		boolean Xwin = xWins(sequencePlayed, column);
+		boolean Xwin = xWinsRowOrCol(sequencePlayed, column);
 		assertThat(Xwin, is(true));
 	}
 	
@@ -53,7 +53,7 @@ public class TicTacToeTest {
 	should_win_X_if_column_2_taken() {
 		String sequencePlayed = "A2, A1, B2, B1, C2, ";
 		String column = "2";
-		boolean Xwin = xWins(sequencePlayed, column);
+		boolean Xwin = xWinsRowOrCol(sequencePlayed, column);
 		assertThat(Xwin, is(true));
 	}
 	
@@ -61,7 +61,7 @@ public class TicTacToeTest {
 	should_win_X_if_column_3_taken() {
 		String sequencePlayed = "A3, A2, B3, B2, C3, ";
 		String column = "3";
-		boolean Xwin = xWins(sequencePlayed, column);
+		boolean Xwin = xWinsRowOrCol(sequencePlayed, column);
 		assertThat(Xwin, is(true));
 	}
 	
@@ -69,7 +69,7 @@ public class TicTacToeTest {
 	should_not_win_X_if_not_all_column_taken() {
 		String sequencePlayed = "A1, ";
 		String column = "1";
-		boolean Xwin = xWins(sequencePlayed, column);
+		boolean Xwin = xWinsRowOrCol(sequencePlayed, column);
 		assertThat(Xwin, is(false));
 	}
 	
@@ -77,19 +77,19 @@ public class TicTacToeTest {
 	should_not_win_X_if_row_taken_by_O() {
 		String sequencePlayed = "A1, A2, A3, ";
 		String row = "A";
-		boolean Xwin = xWins(sequencePlayed, row);
+		boolean Xwin = xWinsRowOrCol(sequencePlayed, row);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "A1, B2, A2, A3, ";
 		row = "A";
-		Xwin = xWins(sequencePlayed, row);
+		Xwin = xWinsRowOrCol(sequencePlayed, row);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "A1, B2, A2, B1, C1, A3, ";
 		row = "A";
-		Xwin = xWins(sequencePlayed, row);
+		Xwin = xWinsRowOrCol(sequencePlayed, row);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "B2, A1, A2, C2, A3, ";
 		row = "A";
-		Xwin = xWins(sequencePlayed, row);
+		Xwin = xWinsRowOrCol(sequencePlayed, row);
 		assertThat(Xwin, is(false));
 	}
 	
@@ -97,19 +97,19 @@ public class TicTacToeTest {
 	should_not_win_X_if_col_taken_by_O() {
 		String sequencePlayed = "A1, B1, C1, ";
 		String column = "1";
-		boolean Xwin = xWins(sequencePlayed, column);
+		boolean Xwin = xWinsRowOrCol(sequencePlayed, column);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "A1, B2, B1, C1, ";
 		column = "1";
-		Xwin = xWins(sequencePlayed, column);
+		Xwin = xWinsRowOrCol(sequencePlayed, column);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "A1, B2, B1, A2, A3, C1, ";
 		column = "1";
-		Xwin = xWins(sequencePlayed, column);
+		Xwin = xWinsRowOrCol(sequencePlayed, column);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "B2, A1, B1, C2, C1, ";
 		column = "1";
-		Xwin = xWins(sequencePlayed, column);
+		Xwin = xWinsRowOrCol(sequencePlayed, column);
 		assertThat(Xwin, is(false));
 	}
 	
@@ -117,7 +117,7 @@ public class TicTacToeTest {
 	should_win_O_if_A_row_taken() {
 		String sequencePlayed = "B1, A1, B2, A2, C1, A3, ";
 		String row = "A";
-		boolean Owin = oWins(sequencePlayed, row);
+		boolean Owin = oWinsRowOrCol(sequencePlayed, row);
 		assertThat(Owin, is(true));
 	}
 	
@@ -125,7 +125,7 @@ public class TicTacToeTest {
 	should_not_win_O_if_row_taken_by_X() {
 		String sequencePlayed = "A1, B1, A2, B2, A3, ";
 		String row = "A";
-		boolean Owin = oWins(sequencePlayed, row);
+		boolean Owin = oWinsRowOrCol(sequencePlayed, row);
 		assertThat(Owin, is(false));
 	}
 	
@@ -140,7 +140,26 @@ public class TicTacToeTest {
 		assertThat(Xwin, is(true));
 	}
 
-	private boolean xWins(String sequencePlayed, String searchedChar) {
+	private boolean xWinDiagonal(String sequencePlayed) {
+		return checkOneDiagonal(sequencePlayed) || checkTheOtherDiagonal(sequencePlayed);
+	}
+
+	private boolean checkOneDiagonal(String sequencePlayed) {
+		return checkFor(sequencePlayed, "A1") && checkFor(sequencePlayed, "B2") && checkFor(sequencePlayed, "C3");
+	}
+
+	private boolean checkTheOtherDiagonal(String sequencePlayed) {
+		return checkFor(sequencePlayed, "A3") && checkFor(sequencePlayed, "B2") && checkFor(sequencePlayed, "C1");
+	}
+
+	private boolean checkFor(String sequencePlayed, String position) {
+		boolean c3Found = sequencePlayed.indexOf(position) != -1;
+		boolean c3NotTakenByOpponent = sequencePlayed.indexOf(position) % 8 != 4;
+		boolean c3Checked = c3Found && c3NotTakenByOpponent;
+		return c3Checked;
+	}
+
+	private boolean xWinsRowOrCol(String sequencePlayed, String searchedChar) {
 		return foundFirst(sequencePlayed, searchedChar) 
 				&& firstNotTakenByOpponent(sequencePlayed, searchedChar)
 				&& foundSecond(sequencePlayed, searchedChar) 
@@ -149,8 +168,8 @@ public class TicTacToeTest {
 				&& thirdNotTakenByOpponent(sequencePlayed, searchedChar);
 	}
 	
-	private boolean oWins(String sequencePlayed, String searchedChar) {
-		return !xWins(sequencePlayed, searchedChar) && xWins(sequencePlayed.substring(4), searchedChar);
+	private boolean oWinsRowOrCol(String sequencePlayed, String searchedChar) {
+		return !xWinsRowOrCol(sequencePlayed, searchedChar) && xWinsRowOrCol(sequencePlayed.substring(4), searchedChar);
 	}
 
 	private boolean thirdNotTakenByOpponent(String sequencePlayed, String searchedChar) {
