@@ -109,7 +109,9 @@ public class TicTacToeTest {
 		
 	@Test public void 
 	should_declare_draw_if_9_rounds_and_no_winner() {
-		// TODO
+		String sequencePlayed = "B2, A1, A3, C1, B1, B3, A2, C2, C3";
+		boolean isDraw = false;
+		assertThat(isDraw, is(true));
 	}
 	
 }
