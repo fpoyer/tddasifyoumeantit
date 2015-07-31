@@ -1,7 +1,7 @@
 package org.fpoyer.tddasifyoumeantit;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.Test;
 
@@ -119,4 +119,15 @@ public class TicTacToeTest {
 		assertThat(isDraw, is(true));
 	}
 	
+	@Test public void 
+	should_switch_turn_if_no_winner_and_not_yet_draw() {
+		String sequencePlayed = "B2, A1, A3, C1, ";
+		boolean isTurnX = false;
+		assertThat(isTurnX, is(true));
+
+//		sequencePlayed = "B2, A1, A3, C1, B1, ";
+//		boolean isTurnO = false;
+//		assertThat(isTurnO, is(true));
+	}
+
 }
