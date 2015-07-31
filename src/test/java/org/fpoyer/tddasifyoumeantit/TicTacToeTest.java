@@ -34,9 +34,9 @@ public class TicTacToeTest {
 	}
 
 	@Test public void 
-	should_not_win_X_if_less_than_5_rounds() {
-		String sequencePlayed = "";
-		String row = null;
+	should_not_win_X_if_not_all_row_taken() {
+		String sequencePlayed = "A1";
+		String row = "A";
 		boolean Xwin = wins(sequencePlayed, row);
 		assertThat(Xwin, is(false));
 	}
