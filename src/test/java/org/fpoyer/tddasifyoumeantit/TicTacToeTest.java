@@ -41,6 +41,14 @@ public class TicTacToeTest {
 		assertThat(Xwin, is(false));
 	}
 	
+	@Test public void 
+	should_win_X_if_column_1_taken() {
+		String sequencePlayed = "A1, A2, B1, B2, C1";
+		String column = "1";
+		boolean Xwin = xWinsColumn(sequencePlayed, column);
+		assertThat(Xwin, is(true));
+	}
+	
 	private boolean wins(String sequencePlayed, String row) {
 		int firstIndexOfRow = sequencePlayed.indexOf(row);
 		String followingSequence = sequencePlayed.substring(firstIndexOfRow + 1);
