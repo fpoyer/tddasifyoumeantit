@@ -9,111 +9,74 @@ import org.junit.Test;
 
 public class TicTacToeTest {
 
-	private static final String COORDINATE_TEMPLATE = "XY, ";
-	private static final int ROUND_LENGTH_IN_CHAR = COORDINATE_TEMPLATE.length();
-	private static final int TWO_ROUND_LENGTH_IN_CHAR = 2*ROUND_LENGTH_IN_CHAR;
-
 	@Test public void 
-	should_win_X_if_A_row_taken() {
+	should_win_X_if_any_row_taken() {
 		String sequencePlayed = "A1, B1, A2, B2, A3, ";
-		String row = "A";
-		boolean Xwin = xWinsRowOrCol(sequencePlayed, row);
+		boolean Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(true));
-	}
-
-	@Test public void 
-	should_win_X_if_B_row_taken() {
-		String sequencePlayed = "B1, A1, B2, A2, B3, ";
-		String row = "B";
-		boolean Xwin = xWinsRowOrCol(sequencePlayed, row);
+		sequencePlayed = "B1, A1, B2, A2, B3, ";
+		Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(true));
-	}
-
-	@Test public void 
-	should_win_X_if_C_row_taken() {
-		String sequencePlayed = "C1, A1, C2, A2, C3, ";
-		String row = "C";
-		boolean Xwin = xWinsRowOrCol(sequencePlayed, row);
+		sequencePlayed = "C1, A1, C2, A2, C3, ";
+		Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(true));
 	}
 
 	@Test public void 
 	should_not_win_X_if_not_all_row_taken() {
 		String sequencePlayed = "A1, ";
-		String row = "A";
-		boolean Xwin = xWinsRowOrCol(sequencePlayed, row);
+		boolean Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(false));
 	}
 	
 	@Test public void 
-	should_win_X_if_column_1_taken() {
+	should_win_X_if_any_column_taken() {
 		String sequencePlayed = "A1, A2, B1, B2, C1, ";
-		String column = "1";
-		boolean Xwin = xWinsRowOrCol(sequencePlayed, column);
+		boolean Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(true));
-	}
-	
-	@Test public void 
-	should_win_X_if_column_2_taken() {
-		String sequencePlayed = "A2, A1, B2, B1, C2, ";
-		String column = "2";
-		boolean Xwin = xWinsRowOrCol(sequencePlayed, column);
-		assertThat(Xwin, is(true));
-	}
-	
-	@Test public void 
-	should_win_X_if_column_3_taken() {
-		String sequencePlayed = "A3, A2, B3, B2, C3, ";
-		String column = "3";
-		boolean Xwin = xWinsRowOrCol(sequencePlayed, column);
+		sequencePlayed = "A2, A1, B2, B1, C2, ";
+		Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
+		sequencePlayed = "A3, A2, B3, B2, C3, ";
+		Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(true));
 	}
 	
 	@Test public void 
 	should_not_win_X_if_not_all_column_taken() {
 		String sequencePlayed = "A1, ";
-		String column = "1";
-		boolean Xwin = xWinsRowOrCol(sequencePlayed, column);
+		boolean Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(false));
 	}
 	
 	@Test public void 
 	should_not_win_X_if_row_taken_by_O() {
 		String sequencePlayed = "A1, A2, A3, ";
-		String row = "A";
-		boolean Xwin = xWinsRowOrCol(sequencePlayed, row);
+		boolean Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "A1, B2, A2, A3, ";
-		row = "A";
-		Xwin = xWinsRowOrCol(sequencePlayed, row);
+		Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "A1, B2, A2, B1, C1, A3, ";
-		row = "A";
-		Xwin = xWinsRowOrCol(sequencePlayed, row);
+		Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "B2, A1, A2, C2, A3, ";
-		row = "A";
-		Xwin = xWinsRowOrCol(sequencePlayed, row);
+		Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(false));
 	}
 	
 	@Test public void 
 	should_not_win_X_if_col_taken_by_O() {
 		String sequencePlayed = "A1, B1, C1, ";
-		String column = "1";
-		boolean Xwin = xWinsRowOrCol(sequencePlayed, column);
+		boolean Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "A1, B2, B1, C1, ";
-		column = "1";
-		Xwin = xWinsRowOrCol(sequencePlayed, column);
+		Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "A1, B2, B1, A2, A3, C1, ";
-		column = "1";
-		Xwin = xWinsRowOrCol(sequencePlayed, column);
+		Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(false));
 		sequencePlayed = "B2, A1, B1, C2, C1, ";
-		column = "1";
-		Xwin = xWinsRowOrCol(sequencePlayed, column);
+		Xwin = VictoryChecker.xWinsRowOrCol(sequencePlayed);
 		assertThat(Xwin, is(false));
 	}
 	
@@ -121,7 +84,7 @@ public class TicTacToeTest {
 	should_win_O_if_A_row_taken() {
 		String sequencePlayed = "B1, A1, B2, A2, C1, A3, ";
 		String row = "A";
-		boolean Owin = oWinsRowOrCol(sequencePlayed, row);
+		boolean Owin = VictoryChecker.oWinsRowOrCol(sequencePlayed, row);
 		assertThat(Owin, is(true));
 	}
 	
@@ -129,80 +92,24 @@ public class TicTacToeTest {
 	should_not_win_O_if_row_taken_by_X() {
 		String sequencePlayed = "A1, B1, A2, B2, A3, ";
 		String row = "A";
-		boolean Owin = oWinsRowOrCol(sequencePlayed, row);
+		boolean Owin = VictoryChecker.oWinsRowOrCol(sequencePlayed, row);
 		assertThat(Owin, is(false));
 	}
 	
 	@Test public void
 	should_win_X_if_diagonal_taken() {
 		String sequencePlayed = "A1, B1, B2, C2, C3, ";
-		boolean Xwin = winDiagonal(sequencePlayed);
+		boolean Xwin = VictoryChecker.winDiagonal(sequencePlayed);
 		assertThat(Xwin, is(true));
 
 		sequencePlayed = "A3, B1, B2, C2, C1, ";
-		Xwin = winDiagonal(sequencePlayed);
+		Xwin = VictoryChecker.winDiagonal(sequencePlayed);
 		assertThat(Xwin, is(true));
 	}
-
-	private boolean winDiagonal(String sequencePlayed) {
-		return checkOneDiagonal(sequencePlayed) || checkTheOtherDiagonal(sequencePlayed);
-	}
-
-	private boolean checkOneDiagonal(String sequencePlayed) {
-		return checkFor(sequencePlayed, "A1") && checkFor(sequencePlayed, "B2") && checkFor(sequencePlayed, "C3");
-	}
-
-	private boolean checkTheOtherDiagonal(String sequencePlayed) {
-		return checkFor(sequencePlayed, "A3") && checkFor(sequencePlayed, "B2") && checkFor(sequencePlayed, "C1");
-	}
-
-	private boolean checkFor(String sequencePlayed, String position) {
-		boolean found = sequencePlayed.indexOf(position) != -1;
-		boolean notTakenByOpponent = sequencePlayed.indexOf(position) % TWO_ROUND_LENGTH_IN_CHAR != ROUND_LENGTH_IN_CHAR;
-		boolean checked = found && notTakenByOpponent;
-		return checked;
-	}
-
-	private boolean xWinsRowOrCol(String sequencePlayed, String searchedChar) {
-		return foundFirst(sequencePlayed, searchedChar) 
-				&& firstNotTakenByOpponent(sequencePlayed, searchedChar)
-				&& foundSecond(sequencePlayed, searchedChar) 
-				&& secondNotTakenByOpponent(sequencePlayed, searchedChar) 
-				&& foundThird(sequencePlayed, searchedChar) 
-				&& thirdNotTakenByOpponent(sequencePlayed, searchedChar);
-	}
-	
-	private boolean oWinsRowOrCol(String sequencePlayed, String searchedChar) {
-		return !xWinsRowOrCol(sequencePlayed, searchedChar) && xWinsRowOrCol(sequencePlayed.substring(ROUND_LENGTH_IN_CHAR), searchedChar);
-	}
-
-	private boolean thirdNotTakenByOpponent(String sequencePlayed, String searchedChar) {
-		return sequencePlayed.substring(sequencePlayed.indexOf(searchedChar) + 1).substring(sequencePlayed.substring(sequencePlayed.indexOf(searchedChar) + 1).indexOf(searchedChar) + 1).indexOf(searchedChar)%TWO_ROUND_LENGTH_IN_CHAR != 3;
-	}
-
-	private boolean secondNotTakenByOpponent(String sequencePlayed, String searchedChar) {
-		int indexOfChar = sequencePlayed.indexOf(searchedChar);
-		return sequencePlayed.substring(indexOfChar + 1).indexOf(searchedChar)%TWO_ROUND_LENGTH_IN_CHAR != 3;
-	}
-
-	private boolean firstNotTakenByOpponent(String sequencePlayed, String searchedChar) {
-		return sequencePlayed.indexOf(searchedChar)%TWO_ROUND_LENGTH_IN_CHAR != ROUND_LENGTH_IN_CHAR;
-	}
-
-	private boolean foundThird(String sequencePlayed, String searchedChar) {
-		int indexOfChar1 = sequencePlayed.indexOf(searchedChar);
-		String substring1 = sequencePlayed.substring(indexOfChar1 + 1);
-		int indexOfChar2 = substring1.indexOf(searchedChar);
-		return substring1.substring(indexOfChar2 + 1).indexOf(searchedChar) != -1;
-	}
-
-	private boolean foundSecond(String sequencePlayed, String searchedChar) {
-		int indexOfChar = sequencePlayed.indexOf(searchedChar);
-		return sequencePlayed.substring(indexOfChar + 1).indexOf(searchedChar) != -1;
-	}
-
-	private boolean foundFirst(String sequencePlayed, String searchedChar) {
-		return sequencePlayed.indexOf(searchedChar) != -1;
+		
+	@Test public void 
+	should_declare_draw_if_9_rounds_and_no_winner() {
+		// TODO
 	}
 	
 }
