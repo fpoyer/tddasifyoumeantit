@@ -42,7 +42,12 @@ public class TicTacToeTest {
 	}
 	
 	private boolean wins(String sequencePlayed, String row) {
-		return sequencePlayed.startsWith(row);
+		int firstIndexOfRow = sequencePlayed.indexOf(row);
+		String followingSequence = sequencePlayed.substring(firstIndexOfRow + 1);
+		int secondIndexOfRow = followingSequence.indexOf(row);
+		String followingSequence2 = followingSequence.substring(secondIndexOfRow + 1);
+		int thirdIndexOfRow = followingSequence2.indexOf(row);
+		return firstIndexOfRow != -1 && secondIndexOfRow != -1 && thirdIndexOfRow != -1;
 	}
 	
 }
