@@ -4,7 +4,7 @@ public class VictoryChecker {
 
 	private static final String COORDINATE_TEMPLATE = "XY, ";
 
-	private static final int ROUND_LENGTH_IN_CHAR = COORDINATE_TEMPLATE
+	public static final int ROUND_LENGTH_IN_CHAR = COORDINATE_TEMPLATE
 			.length();
 	private static final int TWO_ROUND_LENGTH_IN_CHAR = 2 * ROUND_LENGTH_IN_CHAR;
 
@@ -48,7 +48,16 @@ public class VictoryChecker {
 		return substring1.substring(indexOfChar2 + 1).indexOf(searchedChar) != -1;
 	}
 
-	public static boolean oWinsRowOrCol(String sequencePlayed,
+	public static boolean oWinsRowOrCol(String sequencePlayed) {
+		return oWinsRowOrCol(sequencePlayed, "A")
+				|| oWinsRowOrCol(sequencePlayed, "B")
+				|| oWinsRowOrCol(sequencePlayed, "C")
+				|| oWinsRowOrCol(sequencePlayed, "1")
+				|| oWinsRowOrCol(sequencePlayed, "2")
+				|| oWinsRowOrCol(sequencePlayed, "3");
+	}
+
+	private static boolean oWinsRowOrCol(String sequencePlayed,
 			String searchedChar) {
 		return !VictoryChecker.xWinsRowOrCol(sequencePlayed, searchedChar)
 				&& VictoryChecker.xWinsRowOrCol(

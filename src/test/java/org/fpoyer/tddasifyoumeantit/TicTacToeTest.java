@@ -1,7 +1,7 @@
 package org.fpoyer.tddasifyoumeantit;
 
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 import org.junit.Test;
 
@@ -83,16 +83,14 @@ public class TicTacToeTest {
 	@Test public void 
 	should_win_O_if_A_row_taken() {
 		String sequencePlayed = "B1, A1, B2, A2, C1, A3, ";
-		String row = "A";
-		boolean Owin = VictoryChecker.oWinsRowOrCol(sequencePlayed, row);
+		boolean Owin = VictoryChecker.oWinsRowOrCol(sequencePlayed);
 		assertThat(Owin, is(true));
 	}
 	
 	@Test public void 
 	should_not_win_O_if_row_taken_by_X() {
 		String sequencePlayed = "A1, B1, A2, B2, A3, ";
-		String row = "A";
-		boolean Owin = VictoryChecker.oWinsRowOrCol(sequencePlayed, row);
+		boolean Owin = VictoryChecker.oWinsRowOrCol(sequencePlayed);
 		assertThat(Owin, is(false));
 	}
 	
@@ -109,8 +107,15 @@ public class TicTacToeTest {
 		
 	@Test public void 
 	should_declare_draw_if_9_rounds_and_no_winner() {
-		String sequencePlayed = "B2, A1, A3, C1, B1, B3, A2, C2, C3";
-		boolean isDraw = false;
+		String sequencePlayed = "B2, A1, A3, C1, B1, B3, A2, C2, C3, ";
+		boolean isDraw = !sequencePlayed.isEmpty()
+				&& sequencePlayed.length()
+						% VictoryChecker.ROUND_LENGTH_IN_CHAR >= 0
+				&& !VictoryChecker.xWinsRowOrCol(sequencePlayed)
+				&& !VictoryChecker.winDiagonal(sequencePlayed)
+				&& !VictoryChecker.oWinsRowOrCol(sequencePlayed)
+				&& !VictoryChecker.winDiagonal(sequencePlayed
+						.substring(VictoryChecker.ROUND_LENGTH_IN_CHAR));
 		assertThat(isDraw, is(true));
 	}
 	
