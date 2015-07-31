@@ -33,6 +33,14 @@ public class TicTacToeTest {
 		assertThat(Xwin, is(true));
 	}
 
+	@Test public void 
+	should_not_win_X_if_less_than_5_rounds() {
+		String sequencePlayed = "";
+		String row = null;
+		boolean Xwin = wins(sequencePlayed, row);
+		assertThat(Xwin, is(false));
+	}
+	
 	private boolean wins(String sequencePlayed, String row) {
 		return sequencePlayed.startsWith(row);
 	}
