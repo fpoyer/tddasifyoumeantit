@@ -129,6 +129,17 @@ public class TicTacToeTest {
 		assertThat(Owin, is(false));
 	}
 	
+	@Test public void
+	should_win_X_if_diagonal_taken() {
+		String sequencePlayed = "A1, B1, B2, C2, C3, ";
+		boolean Xwin = xWinDiagonal(sequencePlayed);
+		assertThat(Xwin, is(true));
+
+		sequencePlayed = "A3, B1, B2, C2, C1, ";
+		Xwin = xWinDiagonal(sequencePlayed);
+		assertThat(Xwin, is(true));
+	}
+
 	private boolean xWins(String sequencePlayed, String searchedChar) {
 		return foundFirst(sequencePlayed, searchedChar) 
 				&& firstNotTakenByOpponent(sequencePlayed, searchedChar)
