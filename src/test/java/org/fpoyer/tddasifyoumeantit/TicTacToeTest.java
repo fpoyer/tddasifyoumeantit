@@ -9,6 +9,10 @@ import org.junit.Test;
 
 public class TicTacToeTest {
 
+	private static final String COORDINATE_TEMPLATE = "XY, ";
+	private static final int ROUND_LENGTH_IN_CHAR = COORDINATE_TEMPLATE.length();
+	private static final int TWO_ROUND_LENGTH_IN_CHAR = 2*ROUND_LENGTH_IN_CHAR;
+
 	@Test public void 
 	should_win_X_if_A_row_taken() {
 		String sequencePlayed = "A1, B1, A2, B2, A3, ";
@@ -132,15 +136,15 @@ public class TicTacToeTest {
 	@Test public void
 	should_win_X_if_diagonal_taken() {
 		String sequencePlayed = "A1, B1, B2, C2, C3, ";
-		boolean Xwin = xWinDiagonal(sequencePlayed);
+		boolean Xwin = winDiagonal(sequencePlayed);
 		assertThat(Xwin, is(true));
 
 		sequencePlayed = "A3, B1, B2, C2, C1, ";
-		Xwin = xWinDiagonal(sequencePlayed);
+		Xwin = winDiagonal(sequencePlayed);
 		assertThat(Xwin, is(true));
 	}
 
-	private boolean xWinDiagonal(String sequencePlayed) {
+	private boolean winDiagonal(String sequencePlayed) {
 		return checkOneDiagonal(sequencePlayed) || checkTheOtherDiagonal(sequencePlayed);
 	}
 
@@ -153,10 +157,10 @@ public class TicTacToeTest {
 	}
 
 	private boolean checkFor(String sequencePlayed, String position) {
-		boolean c3Found = sequencePlayed.indexOf(position) != -1;
-		boolean c3NotTakenByOpponent = sequencePlayed.indexOf(position) % 8 != 4;
-		boolean c3Checked = c3Found && c3NotTakenByOpponent;
-		return c3Checked;
+		boolean found = sequencePlayed.indexOf(position) != -1;
+		boolean notTakenByOpponent = sequencePlayed.indexOf(position) % TWO_ROUND_LENGTH_IN_CHAR != ROUND_LENGTH_IN_CHAR;
+		boolean checked = found && notTakenByOpponent;
+		return checked;
 	}
 
 	private boolean xWinsRowOrCol(String sequencePlayed, String searchedChar) {
@@ -169,20 +173,20 @@ public class TicTacToeTest {
 	}
 	
 	private boolean oWinsRowOrCol(String sequencePlayed, String searchedChar) {
-		return !xWinsRowOrCol(sequencePlayed, searchedChar) && xWinsRowOrCol(sequencePlayed.substring(4), searchedChar);
+		return !xWinsRowOrCol(sequencePlayed, searchedChar) && xWinsRowOrCol(sequencePlayed.substring(ROUND_LENGTH_IN_CHAR), searchedChar);
 	}
 
 	private boolean thirdNotTakenByOpponent(String sequencePlayed, String searchedChar) {
-		return sequencePlayed.substring(sequencePlayed.indexOf(searchedChar) + 1).substring(sequencePlayed.substring(sequencePlayed.indexOf(searchedChar) + 1).indexOf(searchedChar) + 1).indexOf(searchedChar)%8 != 3;
+		return sequencePlayed.substring(sequencePlayed.indexOf(searchedChar) + 1).substring(sequencePlayed.substring(sequencePlayed.indexOf(searchedChar) + 1).indexOf(searchedChar) + 1).indexOf(searchedChar)%TWO_ROUND_LENGTH_IN_CHAR != 3;
 	}
 
 	private boolean secondNotTakenByOpponent(String sequencePlayed, String searchedChar) {
 		int indexOfChar = sequencePlayed.indexOf(searchedChar);
-		return sequencePlayed.substring(indexOfChar + 1).indexOf(searchedChar)%8 != 3;
+		return sequencePlayed.substring(indexOfChar + 1).indexOf(searchedChar)%TWO_ROUND_LENGTH_IN_CHAR != 3;
 	}
 
 	private boolean firstNotTakenByOpponent(String sequencePlayed, String searchedChar) {
-		return sequencePlayed.indexOf(searchedChar)%8 != 4;
+		return sequencePlayed.indexOf(searchedChar)%TWO_ROUND_LENGTH_IN_CHAR != ROUND_LENGTH_IN_CHAR;
 	}
 
 	private boolean foundThird(String sequencePlayed, String searchedChar) {
