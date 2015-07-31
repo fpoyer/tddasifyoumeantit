@@ -17,7 +17,7 @@ public class TicTacToeTest {
 	
 	@Test public void 
 	should_win_X_if_B_row_taken() {
-		boolean Xwin = false;
+		boolean Xwin = "B1, A1, B2, A2, B3".startsWith("B");
 		assertThat(Xwin, is(true));
 	}
 }
