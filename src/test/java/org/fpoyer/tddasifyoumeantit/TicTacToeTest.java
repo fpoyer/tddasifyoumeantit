@@ -93,6 +93,26 @@ public class TicTacToeTest {
 		assertThat(Xwin, is(false));
 	}
 	
+	@Test public void 
+	should_not_win_X_if_col_taken_by_O() {
+		String sequencePlayed = "A1, B1, C1, ";
+		String column = "1";
+		boolean Xwin = xWinsColumn(sequencePlayed, column);
+		assertThat(Xwin, is(false));
+		sequencePlayed = "A1, B2, B1, C1, ";
+		column = "1";
+		Xwin = xWinsColumn(sequencePlayed, column);
+		assertThat(Xwin, is(false));
+		sequencePlayed = "A1, B2, B1, A2, A3, C1, ";
+		column = "1";
+		Xwin = xWinsColumn(sequencePlayed, column);
+		assertThat(Xwin, is(false));
+		sequencePlayed = "B2, A1, B1, C2, C1, ";
+		column = "1";
+		Xwin = xWinsColumn(sequencePlayed, column);
+		assertThat(Xwin, is(false));
+	}
+	
 	private boolean xWinsRow(String sequencePlayed, String row) {
 		int firstIndexOfRow = sequencePlayed.indexOf(row);
 		String followingSequence = sequencePlayed.substring(firstIndexOfRow + 1);
@@ -103,11 +123,11 @@ public class TicTacToeTest {
 	}
 	
 	private boolean xWinsColumn	(String sequencePlayed, String column) {
-		int firstIndexOfRow = sequencePlayed.indexOf(column);
-		String followingSequence = sequencePlayed.substring(firstIndexOfRow + 1);
-		int secondIndexOfRow = followingSequence.indexOf(column);
-		String followingSequence2 = followingSequence.substring(secondIndexOfRow + 1);
-		int thirdIndexOfRow = followingSequence2.indexOf(column);
-		return firstIndexOfRow != -1 && secondIndexOfRow != -1 && thirdIndexOfRow != -1;
+		int firstIndexOfColumn = sequencePlayed.indexOf(column);
+		String followingSequence = sequencePlayed.substring(firstIndexOfColumn + 1);
+		int secondIndexOfColumn = followingSequence.indexOf(column);
+		String followingSequence2 = followingSequence.substring(secondIndexOfColumn + 1);
+		int thirdIndexOfColumn = followingSequence2.indexOf(column);
+		return firstIndexOfColumn != -1 && secondIndexOfColumn != -1 && thirdIndexOfColumn != -1 && secondIndexOfColumn%8 != 3 && thirdIndexOfColumn%8 != 3;
 	}
 }
