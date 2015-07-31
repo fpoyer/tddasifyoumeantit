@@ -113,6 +113,14 @@ public class TicTacToeTest {
 		assertThat(Xwin, is(false));
 	}
 	
+	@Test public void 
+	should_win_O_if_A_row_taken() {
+		String sequencePlayed = "B1, A1, B2, A2, C1, A3, ";
+		String row = "A";
+		boolean Owin = oWins(sequencePlayed, row);
+		assertThat(Owin, is(true));
+	}
+	
 	private boolean xWins(String sequencePlayed, String searchedChar) {
 		return foundFirst(sequencePlayed, searchedChar) 
 				&& foundSecond(sequencePlayed, searchedChar) 
