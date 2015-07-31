@@ -79,6 +79,18 @@ public class TicTacToeTest {
 		String row = "A";
 		boolean Xwin = xWinsRow(sequencePlayed, row);
 		assertThat(Xwin, is(false));
+		sequencePlayed = "A1, B2, A2, A3, ";
+		row = "A";
+		Xwin = xWinsRow(sequencePlayed, row);
+		assertThat(Xwin, is(false));
+		sequencePlayed = "A1, B2, A2, B1, C1, A3, ";
+		row = "A";
+		Xwin = xWinsRow(sequencePlayed, row);
+		assertThat(Xwin, is(false));
+		sequencePlayed = "B2, A1, A2, C2, A3, ";
+		row = "A";
+		Xwin = xWinsRow(sequencePlayed, row);
+		assertThat(Xwin, is(false));
 	}
 	
 	private boolean xWinsRow(String sequencePlayed, String row) {
@@ -87,7 +99,7 @@ public class TicTacToeTest {
 		int secondIndexOfRow = followingSequence.indexOf(row);
 		String followingSequence2 = followingSequence.substring(secondIndexOfRow + 1);
 		int thirdIndexOfRow = followingSequence2.indexOf(row);
-		return firstIndexOfRow != -1 && secondIndexOfRow != -1 && thirdIndexOfRow != -1;
+		return firstIndexOfRow != -1 && secondIndexOfRow != -1 && thirdIndexOfRow != -1 && secondIndexOfRow%8 != 3 && thirdIndexOfRow%8 != 3;
 	}
 	
 	private boolean xWinsColumn	(String sequencePlayed, String column) {
